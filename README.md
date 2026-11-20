@@ -209,8 +209,10 @@ against one typed at the prompt, an empty list against nothing to save, what a l
 and a path with a space in it surviving as one parameter.
 
 The saves write real files, so each case works under the system temp directory and clears its
-`micro-repl-*` files away afterwards. `micro-expert` imports these same cases from its own
-suite, so a change here is caught there too, run from `src/repl` by the same interpreter.
+`micro-repl-*` files away afterwards. `micro-expert` carries this repository as the submodule
+at `src/repl` but does not import these cases: like the parser and the logger, the library's
+suite runs here, and its host keeps its own single check that `examples/notes.ms` is written on
+this library and nothing else.
 
 One caveat, because it changes how you read a failed run: in this interpreter an uncaught
 runtime error still exits `0`, so the `N passed, M failed` line is the real signal. The
